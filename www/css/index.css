@@ -3,9 +3,12 @@ body {
     margin: 0px;  /* on the sides of the body */
     width:100%;
     background-color: #E8E8E8;
+    
+    /* PhoneGap Default Styles */
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    /***************/
 }
 
 div#header {

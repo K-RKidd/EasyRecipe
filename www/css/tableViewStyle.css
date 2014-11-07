@@ -51,7 +51,7 @@
     /* The next two styles (li.tableViewCell:first-child and li.tableViewCell:last-child) make
      * sure that every cell has only one border that doesn't overlap any other borders */
     
-    li.tableViewCell:first-child {  /* applies to the first list item with class tableViewCell */
+    ul.tableView li.tableViewCell:first-child {  /* applies to the first list item with class tableViewCell */
         
         border-top: 0px none white; /* doesn't have a border at the top because the ul already has
                                      * a border at the top */
@@ -60,7 +60,7 @@
                                         * below it has a border at the top */
     }
     
-    li.tableViewCell:last-child {   /* applies to the last list item with class tableViewCell */
+    ul.tableView li.tableViewCell:last-child {   /* applies to the last list item with class tableViewCell */
         
         border-bottom: 0px none white;  /* doesn't have a border at the bottom because the ul already
                                          * has a border at the bottom. Notice that it still has a
@@ -80,8 +80,8 @@
     width: 90%;       /* Width is 90% of the screen width (100% causes it to be larger than the screen
                        * for some reason) */
     
-    margin-left: auto;  /* Left and right margins are auto to center the search bar horizontally
-    margin-right: auto;  * across the page */
+    margin-left: auto;  /* Left and right margins are auto to center the search bar horizontally */
+    margin-right: auto; /* across the page */
     
     font-size: 12pt;
 }

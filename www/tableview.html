@@ -6,6 +6,9 @@
     look like a UITableView in iOS (look at the Phone app for an
     example of a UITableView.) This page should be renamed to index.html
     because it will be the first page that the app opens.
+    
+    TODO: rename this file to index.html
+    TODO: put help button logic in external js file
 -->
 <html>
     
@@ -124,9 +127,13 @@
                             
                             //this.innerHTML gets the html inside the list item.
                             alert("You clicked on list item: " + this.innerHTML);
+                            window.location = "recipedetailview.html";
                         };
                     }
                 } //end for loop
+                
+                //// TODO: This help button logic should be put in its own js file
+                ////       so that we can reuse it across pages.
                 
                 //Get the help button
                 var helpButton = document.getElementById("help");

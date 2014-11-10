@@ -1,48 +1,94 @@
-ul.tableView {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 15px;
-    background-color: white;
-    border-top: 1px solid #A8A8A8;
-    border-bottom: 1px solid #A8A8A8;
+/**
+ * tableViewStyle.css - This contains css styles for a table view
+ * (which is a list of table cells). An unordered list acts as the
+ * table, and the list items act as the cells. This css also styles
+ * a search bar at the top of the table view.
+ */
+
+/***************************************
+ * Table View (unordered list) Style
+ **************************************/
+
+    ul.tableView {
+        
+        margin-top: 10px;           /* Move the ul down 10px */
+        margin-bottom: 10px;        /* Keep the bottom of the ul 10px away from bottom of screen */
+        padding-left: 15px;         /* Push content inside ul right by 15px */
+        
+        background-color: white;
+        
+        border-top: 1px solid #A8A8A8;     /* Give the ul a border on top and bottom */
+        border-bottom: 1px solid #A8A8A8;
+        
+    }
     
-    font-family: sans-serif;
-    font-weight: 400;
-}
+/***End Table View Style***/
 
-ul.tableView li {
-    list-style: none;
-}
+    h2.tableViewSectionHeader {
+        margin-left: 10px;
+        color: #666666;
+        font-weight: 300;
+        font-size: 16pt;
+    }
+    
+/***************************************
+ * Table View Cell (list item) Style
+ **************************************/
 
-li.tableViewCell {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 0px;
-    border-top: 1px solid #A8A8A8;
-    /*border-bottom: 1px solid #A8A8A8;*/
-}
+    ul.tableView li {   /* applies to list items in a ul with class tableView */
+        list-style: none;   /* removes bullet points from list items */
+    }
+    
+    ul.tableView li.tableViewCell {      /* applies to all list items with class tableViewCell */
+        
+                                /* Put space around content inside list items: */
+        padding-top: 20px;      /* 20px on top, */
+        padding-bottom: 20px;   /* 20px on the bottom, */
+        padding-left: 10px;     /* 10px on the left */
+        padding-right: 10px;    /* 10px on the right */
+        
+        margin-left: 0px;       /* Make sure the list item's left edge is at the left edge of screen */
+        
+        border-top: 1px solid #A8A8A8;  /* Every list item has a top border only to prevent having
+                                         * borders overlapping each other, which doesn't look as nice. */
+    }
+    
+    /* The next two styles (li.tableViewCell:first-child and li.tableViewCell:last-child) make
+     * sure that every cell has only one border that doesn't overlap any other borders */
+    
+    ul.tableView li.tableViewCell:first-child {  /* applies to the first list item with class tableViewCell */
+        
+        border-top: 0px none white; /* doesn't have a border at the top because the ul already has
+                                     * a border at the top */
+
+        border-bottom: 0px none white; /* doesn't have a border at the bottom because the list item
+                                        * below it has a border at the top */
+    }
+    
+    ul.tableView li.tableViewCell:last-child {   /* applies to the last list item with class tableViewCell */
+        
+        border-bottom: 0px none white;  /* doesn't have a border at the bottom because the ul already
+                                         * has a border at the bottom. Notice that it still has a
+                                         * border at the top (from the general li.tableViewCell style
+                                         * above). */
+    }
+    
+/***End Table View Cell Style***/
+
+/***************************************
+ * Search Bar Style
+ **************************************/
 
 #searchBar {
-    display: block;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    display: block;   /* Display search bar as a block element (occupies it's own line like an h1) */
+    
+    width: 90%;       /* Width is 90% of the screen width (100% causes it to be larger than the screen
+                       * for some reason) */
+    
+    margin-left: auto;  /* Left and right margins are auto to center the search bar horizontally */
+    margin-right: auto; /* across the page */
     
     font-size: 12pt;
 }
 
-li.tableViewCell:first-child {
-    border-top: 0px none white;
-    border-bottom: 0px none white;
-}
-
-li.tableViewCell:last-child {
-    border-bottom: 0px none white;
-}
-
-li:focus {
-    background-color: blue;
-    color: white;
-}
+/***End Search Bar Style***/

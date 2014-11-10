@@ -1,85 +1,145 @@
-<!DOCTYPE html>
-
+<!DOCTYPE html>  <!--HTML5 Document Type-->
+<!--
+    tableview.html - This page is a prototype of the first screen
+    in EasyRecipe. There is a list of recipes that can be clicked
+    to show an alert. The list is styled by tableViewStyle.css to
+    look like a UITableView in iOS (look at the Phone app for an
+    example of a UITableView.) This page should be renamed to index.html
+    because it will be the first page that the app opens.
+-->
 <html>
+    
     <head>
+        <!--Character Encoding-->
         <meta charset="utf-8" />
+        
+        <!--PhoneGap Default Meta Tag-->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <!--Index.css-->
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
+        <!--Table View Style Sheet-->
         <link rel="stylesheet" type="text/css" href="css/tableViewStyle.css" />
-        <title>Simple Site</title>
+        
+        <!--Title of tableview.html-->
+        <title>Recipes</title>
     </head>
+    
     <body>
         
-        <!--Header-->
+        <!--Header: stays at the top of the page-->
         <div id="header">
             <div class="row">
+                
+                <!--Left Element of Header-->
                 <div class="tableCell">
                     <a class="navigationLink" href="#">Edit</a>
                 </div>
+                
+                <!--Middle Element of Header-->
                 <div class="tableCell">
                     <span class="navigationTitle">Recipes</span>
                 </div>
+                
+                <!--Right Element of Header-->
                 <div class="tableCell">
                     <a class="navigationLink" href="#">Add</a>
                 </div>
+                
             </div>
-        </div>
+        </div>  <!--End Header-->
         
-        <!--Body-->
+        <!--Body: Contains content of page-->
         <div id="body">
             
-            <div class="tableContainer">
-                <input type="text" name="searchBar" id="searchBar" />
-                <ul class="tableView">
-                    <li class="tableViewCell">Home</li>
-                    <li class="tableViewCell">Chocolate Chip Cookies</li>
-                    <li class="tableViewCell">Mac & Cheese</li>
-                    <li class="tableViewCell">Cell 4</li>
-                    <li class="tableViewCell">Cell 5</li>
-                    <li class="tableViewCell">Cell 6</li>
-                    <li class="tableViewCell">Cell 7</li>
-                    <li class="tableViewCell">Cell 8</li>
-                    <li class="tableViewCell">Cell 9</li>
-                    <li class="tableViewCell">Cell 1</li>
-                    <li class="tableViewCell">Cell 2</li>
-                    <li class="tableViewCell">Cell 3</li>
-                    <li class="tableViewCell">Cell 4</li>
-                    <li class="tableViewCell">Cell 5</li>
-                    <li class="tableViewCell">Cell 6</li>
-                    <li class="tableViewCell">Cell 7</li>
-                    <li class="tableViewCell">Cell 8</li>
-                    <li class="tableViewCell">Cell 9</li>
-                </ul>
-            </div>
+            <!--Search Bar: This is just an input element-->
+            <input type="text" name="searchBar" id="searchBar" />
             
-        </div>
+            <!--Table View: A table view is just an unordered list
+                with list items with class of tableViewCell. The
+                list items can be clicked to do various things
+                (see JavaScript)-->
+            <ul class="tableView">
+                <!--"Home" list item goes to index.html-->
+                <li class="tableViewCell">Home</li>
+                <li class="tableViewCell">Chocolate Chip Cookies</li>
+                <li class="tableViewCell">Mac & Cheese</li>
+                <li class="tableViewCell">Cell 4</li>
+                <li class="tableViewCell">Cell 5</li>
+                <li class="tableViewCell">Cell 6</li>
+                <li class="tableViewCell">Cell 7</li>
+                <li class="tableViewCell">Cell 8</li>
+                <li class="tableViewCell">Cell 9</li>
+                <li class="tableViewCell">Cell 1</li>
+                <li class="tableViewCell">Cell 2</li>
+                <li class="tableViewCell">Cell 3</li>
+                <li class="tableViewCell">Cell 4</li>
+                <li class="tableViewCell">Cell 5</li>
+                <li class="tableViewCell">Cell 6</li>
+                <li class="tableViewCell">Cell 7</li>
+                <li class="tableViewCell">Cell 8</li>
+                <li class="tableViewCell">Cell 9</li>
+            </ul>
+            
+        </div> <!--End Body-->
         
+        <!--The help button that stays fixed in the lower
+            right corner of the screen. This is given
+            functionality in the JavaScript. -->
         <button type="button" id="help">?</button>
         
+        <!--PhoneGap JavaScript: must be at the bottom of the page-->
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        
+        <!--Script that pops an alert when a list item is clicked.
+            If the "Home" list item is clicked, the JavaScript points
+            the browser to index.html.-->
         <script type="text/javascript">
             
+            //Run the script when the window loads to prevent manipulating
+            //HTML elements before they load.
             window.onload = function() {
+                
+                //Get all elements with class name tableViewCell (so get all list
+                //items in ul.tableView). tableViewCells is an array of elements.
                 var tableViewCells = document.getElementsByClassName("tableViewCell");
+                
+                //Iterate through the list items and add a function to each
+                //cell that executes when that list item is clicked.
                 for (var i = 0; i < tableViewCells.length; i++) {
+                    
+                    //If this is the first list item, it is the "Home"
+                    //list item, so clicking it will point the browser to index.html.
                     if (i == 0) {
-                        tableViewCells[i].onmousedown = function() {
+                        tableViewCells[i].onclick = function() {
                             window.location = "index.html";
                         };
-                    } else {
-                        tableViewCells[i].onmousedown = function() {
+                    }
+                    
+                    //Otherwise, just pop up an alert displaying the contents of the
+                    //list item when the list item is clicked.
+                    else {
+                        tableViewCells[i].onclick = function() {
+                            
+                            //this.innerHTML gets the html inside the list item.
                             alert("You clicked on list item: " + this.innerHTML);
                         };
                     }
-                }
+                } //end for loop
                 
+                //Get the help button
                 var helpButton = document.getElementById("help");
-                helpButton.onmousedown = function() {
+                
+                //When the help button is clicked, pop up an amusing alert.
+                //Later on, this will pop up an alert containing actual help.
+                helpButton.onclick = function() {
                     alert("No help for you! Muahahaha!");
                 }
-            }
+                
+            }//end window.onload function
             
         </script>
+        
     </body>
 </html>

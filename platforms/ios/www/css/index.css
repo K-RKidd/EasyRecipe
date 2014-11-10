@@ -1,86 +1,120 @@
+/**
+ * index.css - This contains css styles meant to be used on all pages in the app.
+ * Styles and lays out the header, body div, and help button.
+ */
+
 body {
+    
     padding: 0px; /* 0 padding and margins ensures there is no whitespace */
     margin: 0px;  /* on the sides of the body */
-    width:100%;
-    background-color: #E8E8E8;
+    width:100%;   /* Body fills width of screen */
+    background-color: #E8E8E8;      /* Light gray background color */
+    
+    font-family: Helvetica, sans-serif;  /* Try loading Helvetica font, otherwise load default sans-serif font */
+    font-weight: 400;       /* Somewhat thin font weight */
+    
+    /* PhoneGap Default Styles */
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-}
-
-div#header {
-    
-    background-color: white;
-    
-    /* Positioning */
-    position: fixed;     /* keeps header on screen at all times */
-    height: 40px;        /* height of header */
-    padding-top: 30px;   /* space above header (to avoid status bar) */
-    padding-bottom: 0px; /* no space below header (space given in height) */
-    width: 100%;         /* fill browser window width */
-    top: 0px;            /* top edge is 0 pixels away from top of window */
-    left: 0px;           /* left is 0 px away from left of window */
-    right: 0px;          /* right is 0 px away from right of window */
     /***************/
+}
+
+/*********************
+ * Header
+ *********************/
+
+    div#header {      /* Styles header at the top of html pages */
+        
+        background-color: white;
+        
+        /* Positioning */
+        position: fixed;     /* keeps header on screen at all times */
+        height: 40px;        /* height of header */
+        padding-top: 30px;   /* space above header (to avoid status bar) */
+        padding-bottom: 0px; /* no space below header (space given in height) */
+        width: 100%;         /* fill browser window width */
+        top: 0px;            /* top edge is 0 pixels away from top of window */
+        left: 0px;           /* left is 0 px away from left of window */
+        right: 0px;          /* right is 0 px away from right of window */
+        /***************/
+        
+        border-bottom: 1px solid #A8A8A8;  /* Give the header a thin light gray bottom border */
+        
+        display: table;         /* The header displays as a table to help lay out buttons */
+        table-layout: fixed;    /* Gives each table cell equal widths */
+        
+        /* Font Styles */
+        font-size: 14pt;
+        text-align: center;
+        /***************/
+        
+        z-index: 1000; /* ensure header is on top of all other elements */
+    }
     
-    border-bottom: 1px solid #A8A8A8;
+    div.row {
+        display: table-row;     /* Display row in header as a table row (e.g. tr) */
+    }
     
-    display: table;
-    table-layout: fixed;
+    div.tableCell {
+        display: table-cell;    /* Display each header item as a table cell (e.g. td)*/
+    }
     
-    /* Font Styles */
-    font-size: 14pt;
-    font-family: Helvetica, sans-serif;
-    text-align: center;
-    /***************/
+    .navigationTitle {  /* Styles to apply to an element with the class navigationTitle, which is usually in the header. */
+        color: black;       /* Black text color */
+        font-weight: bold;  /* Bold font */
+    }
     
-    z-index: 1000; /* ensure header is on top of all other elements */
-}
+    .navigationLink {   /* Styles to apply to links with class navigationLink in the header */
+        text-decoration: none;  /* Remove underline and "purple" color from links */
+        color: blue;            /* Blue text color */
+    }
 
-div.row {
-    display: table-row;
-}
+/***End Header Style***/
 
-div.tableCell {
-    display: table-cell;
-}
+/*********************
+ * Body
+ *********************/
 
-.navigationTitle {
-    color: black;
-    font-weight: bold;
-}
+    div#body {      /* Styles the main div containing the content of the page */
+        
+        /* Positioning */
+        position: absolute;    /* positions div relative to html document */
+        top: 70px;             /* top edge is header height + header padding */
+        width: 100%;           /* fill browser width */
+        margin: 0px;           /* no margins on sides */
+        padding-top: 10px;     /* extra 10px of space between body content and header */
+        padding-bottom: 10px;  /* add small 10px space between body content and bottom of screen */
+        /***************/
+        
+        z-index: 1;         /* body div is behind header */
+    }
 
-.navigationLink {
-    text-decoration: none;
-    color: blue;
-    font-weight: 400;
-}
+/***End Body Style***/
 
-div#body {
-    
-    /* Positioning */
-    position: absolute; /* positions div relative to html document */
-    top: 70px;         /* top edge is header height + header padding */
-    width: 100%;        /* fill browser width */
-    margin: 0px;        /* no margins on sides */
-    padding-top: 10px;
-    padding-bottom: 10px;
-    /***************/
-    
-    z-index: 1;         /* body div is behind header */
-}
+/*********************
+ * Help Button
+ *********************/
 
-.button { /* styles for the stylish button on page1.html */
-    background-color: blue;
-    color: red;
-    height: 20px;
-}
+    #help {     /* Styles the help button, places it in lower right corner */
+        
+        /* Positioning */
+        position: fixed;    /* keep help button on screen at all times (positioned relative to browser window) */
+        bottom: 15px;       /* keep bottom edge of button 15px away from bottom of screen */
+        right: 15px;        /* keep right edge of button 15px away from right of screen */
+        /***************/
+        
+        z-index: 500;     /* Ensures help button is on top of other elements in page */
+        
+        height: 40px;
+        width: 40px;
+    }
 
-#help {
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    z-index: 500;
-    height: 40px;
-    width: 40px;
-}
+/***End Help Button Style***/
+
+
+    .button {   /* styles for the stylish button on page1.html */
+        background-color: blue;
+        color: red;
+        height: 20px;
+    }

@@ -1,0 +1,125 @@
+<!DOCTYPE html>  <!--HTML5 Document Type-->
+<!--
+    tableview.html - This page is a prototype of the first screen
+    in EasyRecipe. There is a list of recipes that can be clicked
+    to show an alert. The list is styled by tableViewStyle.css to
+    look like a UITableView in iOS (look at the Phone app for an
+    example of a UITableView.) This page should be renamed to index.html
+    because it will be the first page that the app opens.
+-->
+<html>
+    
+    <head>
+        <!--Character Encoding-->
+        <meta charset="utf-8" />
+        
+        <!--PhoneGap Default Meta Tag-->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <!--Index.css-->
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
+        <!--Table View Style Sheet-->
+        <link rel="stylesheet" type="text/css" href="css/tableViewStyle.css" />
+        
+        <!--Title of tableview.html-->
+        <title>Recipe Detail</title>
+    </head>
+    
+    <body>
+        
+        <!--Header: stays at the top of the page-->
+        <div id="header">
+            <div class="row">
+                
+                <!--Left Element of Header-->
+                <div class="tableCell">
+                    <a class="navigationLink" href="tableView.html">Back</a>
+                </div>
+                
+                <!--Middle Element of Header-->
+                <div class="tableCell">
+                    <span class="navigationTitle">Recipe</span>
+                </div>
+                
+                <!--Right Element of Header-->
+                <div class="tableCell">
+                    <a class="navigationLink" href="#">Edit</a>
+                </div>
+                
+            </div>
+        </div>  <!--End Header-->
+        
+        <!--Body: Contains content of page-->
+        <div id="body">
+            
+            <!---->
+            <ul class="tableView">
+                <!---->
+                <li class="tableViewCell">**Recipe Name** <img src="https://openclipart.org/image/300px/svg_to_png/151201/taco.png" /></li>
+            </ul>
+            
+            <!---->
+            <ul class="tableView">
+                <!---->
+                <li class="tableViewCell">**Recipe Tags (only shown if there are tags)**</li>
+            </ul>
+            
+            <!---->
+            <ul class="tableView">
+                <!---->
+                <li class="tableViewCell">**Cook Time**</li>
+                <li class="tableViewCell">**Yield**</li>
+            </ul>
+            
+            <h2 class="tableViewSectionHeader">Ingredients</h2>
+            
+                <!---->
+                <ul class="tableView">
+                    <!---->
+                    <li class="tableViewCell">Ingredient 1<br />
+                                              Ingredient 2</li>
+                </ul>
+                
+            <h2 class="tableViewSectionHeader">Directions</h2>
+            
+                <!---->
+                <ul class="tableView">
+                    <!---->
+                    <li class="tableViewCell">First step is ... Then ... Finally ...</li>
+                </ul>
+            
+        </div> <!--End Body-->
+        
+        <!--The help button that stays fixed in the lower
+            right corner of the screen. This is given
+            functionality in the JavaScript. -->
+        <button type="button" id="help">?</button>
+        
+        <!--PhoneGap JavaScript: must be at the bottom of the page-->
+        <script type="text/javascript" src="cordova.js"></script>
+        
+        <!---->
+        <script type="text/javascript">
+            
+            //Run the script when the window loads to prevent manipulating
+            //HTML elements before they load.
+            window.onload = function() {
+                
+                
+                
+                //Get the help button
+                var helpButton = document.getElementById("help");
+                
+                //When the help button is clicked, pop up an amusing alert.
+                //Later on, this will pop up an alert containing actual help.
+                helpButton.onclick = function() {
+                    alert("No help for you! Muahahaha!");
+                }
+                
+            }//end window.onload function
+            
+        </script>
+        
+    </body>
+</html>

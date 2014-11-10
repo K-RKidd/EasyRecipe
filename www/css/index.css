@@ -10,6 +10,9 @@ body {
     width:100%;   /* Body fills width of screen */
     background-color: #E8E8E8;      /* Light gray background color */
     
+    font-family: Helvetica, sans-serif;  /* Try loading Helvetica font, otherwise load default sans-serif font */
+    font-weight: 400;       /* Somewhat thin font weight */
+    
     /* PhoneGap Default Styles */
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -43,7 +46,6 @@ body {
         
         /* Font Styles */
         font-size: 14pt;
-        font-family: Helvetica, sans-serif;  /* Try loading Helvetica font, otherwise load default sans-serif font */
         text-align: center;
         /***************/
         
@@ -66,7 +68,6 @@ body {
     .navigationLink {   /* Styles to apply to links with class navigationLink in the header */
         text-decoration: none;  /* Remove underline and "purple" color from links */
         color: blue;            /* Blue text color */
-        font-weight: 400;       /* Somewhat thin font weight */
     }
 
 /***End Header Style***/

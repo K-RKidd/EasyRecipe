@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/tableViewStyle.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<link rel="stylesheet" href="src/jquery.swipeButton.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	<script src="dist/jquery.swipeButton-1.2.1.min.js"></script>
+        <script> 
+      $(document).ready(function(){
+        $(".deleteMe").on("click", function(){
+       $(this).closest("li").remove(); 
+                  });
+           });
+       </script>
+
+        <title>Simple Site</title>
+    </head>
+    <body>
+        
+        <!--Header-->
+        <div id="header">
+            <div class="row">
+                <div class="tableCell">
+                    <a class="navigationLink" href="tableview.html">Cancel</a>
+                </div>               
+                <div class="tableCell">
+                    <span class="navigationTitle">Recipes</span>
+                </div>
+                <div class="tableCell">
+                    <a class="navigationLink" href="tableview.html">Done</a>
+                </div>
+            </div>
+        </div>
+      
+        <!--Body-->
+
+        <div id="body">
+            
+            <div class="tableContainer">
+                <input type="text" name="searchBar" id="searchBar" />
+                   <li class="tableViewCell" > Home <div class='deleteMe'>X</div></li>
+                   <li class="tableViewCell" >Chocolate Chip Cookies <div class='deleteMe'>X</div></li>                   <li class="tableViewCell" >Mac & Cheese <div class='deleteMe'>X</div></li>
+             </ul>
+            </div>
+            
+        </div>
+        
+        <button type="button" id="help">?</button>
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            
+            window.onload = function() {
+                
+                var tableViewCells = document.getElementsByClassName("tableViewCell");
+ 
+                for (var i = 0; i < tableViewCells.length; i++) {
+                    if (i == 0) {
+                        tableViewCells[i].onmousedown = function() {
+                            window.location = "index.html";
+                        };
+                    } else {
+                        tableViewCells[i].onmousedown = function() {
+                            alert("You clicked on list item: " + this.innerHTML);
+                        };
+                    }
+                }
+                
+                var helpButton = document.getElementById("help");
+                helpButton.onmousedown = function() {
+                    alert("No help for you! Muahahaha!");
+                }
+            }
+
+$(document).ready(function(){
+    $(".deleteMe").on("click", function(){
+       $(this).closest("li").remove(); 
+    });
+});
+            
+        </script>
+    </body>
+
+</html>

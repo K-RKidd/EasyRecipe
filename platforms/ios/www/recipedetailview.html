@@ -6,6 +6,9 @@
     look like a UITableView in iOS (look at the Phone app for an
     example of a UITableView.) This page should be renamed to index.html
     because it will be the first page that the app opens.
+    
+    TODO: edit button should open editrecipeview
+    TODO: if recipe image is large, make it smaller
 -->
 <html>
     
@@ -44,7 +47,7 @@
                 
                 <!--Right Element of Header-->
                 <div class="tableCell">
-                    <a class="navigationLink" href="#">Edit</a>
+                    <a class="navigationLink" href="recipeeditview.html">Edit</a>
                 </div>
                 
             </div>
@@ -53,39 +56,39 @@
         <!--Body: Contains content of page-->
         <div id="body">
             
-            <!---->
+            <!--Image of finished recipe-->
+            <img src="https://openclipart.org/image/300px/svg_to_png/151201/taco.png" class="recipePicture" />
+            
+            <!--Recipe Name table cell-->
             <ul class="tableView">
-                <!---->
-                <li class="tableViewCell">**Recipe Name** <img src="https://openclipart.org/image/300px/svg_to_png/151201/taco.png" /></li>
+                <li class="tableViewCell">**Recipe Name**</li>
             </ul>
             
-            <!---->
+            <!--Recipe Tags table cell-->
             <ul class="tableView">
-                <!---->
-                <li class="tableViewCell">**Recipe Tags (only shown if there are tags)**</li>
+                <li class="tableViewCell">tag1, tag2, tag3</li>
             </ul>
             
-            <!---->
+            <!--Cook Time and Yield table cells-->
             <ul class="tableView">
-                <!---->
                 <li class="tableViewCell">**Cook Time**</li>
                 <li class="tableViewCell">**Yield**</li>
             </ul>
             
+            <!--Ingredients section header-->
             <h2 class="tableViewSectionHeader">Ingredients</h2>
             
-                <!---->
+                <!--Ingredients list (in a table cell)-->
                 <ul class="tableView">
-                    <!---->
                     <li class="tableViewCell">Ingredient 1<br />
                                               Ingredient 2</li>
                 </ul>
                 
+            <!--Directions section header-->
             <h2 class="tableViewSectionHeader">Directions</h2>
             
-                <!---->
+                <!--Directions list (in a table cell)-->
                 <ul class="tableView">
-                    <!---->
                     <li class="tableViewCell">First step is ... Then ... Finally ...</li>
                 </ul>
             
@@ -105,8 +108,6 @@
             //Run the script when the window loads to prevent manipulating
             //HTML elements before they load.
             window.onload = function() {
-                
-                
                 
                 //Get the help button
                 var helpButton = document.getElementById("help");

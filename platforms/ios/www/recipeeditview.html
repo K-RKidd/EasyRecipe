@@ -47,7 +47,7 @@
                 
                 <!--Right Element of Header-->
                 <div class="tableCell">
-                    <a class="navigationLink" href="recipeeditview.html">Edit</a>
+                    <a class="navigationLink" href="#">Edit</a>
                 </div>
                 
             </div>
@@ -59,29 +59,47 @@
             <!--Image of finished recipe-->
             <img src="https://openclipart.org/image/300px/svg_to_png/151201/taco.png" class="recipePicture" />
             
-            <!--Recipe Name table cell-->
-            <ul class="tableView">
-                <li class="tableViewCell">**Recipe Name**</li>
-            </ul>
+            <!--Recipe Name section header-->
+            <h2 class="tableViewSectionHeader">Recipe Name</h2>
             
-            <!--Recipe Tags table cell-->
-            <ul class="tableView">
-                <li class="tableViewCell">tag1, tag2, tag3</li>
-            </ul>
+                <!--Recipe Name table cell-->
+                <ul class="tableView">
+                    <li class="tableViewCell"><input type="text" value="Chocolate Chip Cookies" class="textField" /></li>
+                </ul>
+                
+            <!--Recipe Tags section header-->
+            <h2 class="tableViewSectionHeader">Recipe Tags</h2>
             
-            <!--Cook Time and Yield table cells-->
-            <ul class="tableView">
-                <li class="tableViewCell">**Cook Time**</li>
-                <li class="tableViewCell">**Yield**</li>
-            </ul>
+                <!--Recipe tag table cells-->
+                <ul class="tableView">
+                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag1" class="textField" /></li>
+                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag2" class="textField" /></li>
+                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag3" class="textField" /></li>
+                    <li class="tableViewCell" id="addTag">Add tag</li>
+                </ul>
+            
+            <!--Cook Time section header-->
+            <h2 class="tableViewSectionHeader">Cook Time</h2>
+            
+                <!--Cook Time table cell-->
+                <ul class="tableView">
+                    <li class="tableViewCell"><input type="text" value="too long" class="textField" /></li>
+                </ul>
+                
+            <!--Yield section header-->
+            <h2 class="tableViewSectionHeader">Yield</h2>
+                
+                <!--Yield table cell-->
+                <ul class="tableView">
+                    <li class="tableViewCell"><input type="text" value="probably not enough" class="textField" /></li>
+                </ul>
             
             <!--Ingredients section header-->
             <h2 class="tableViewSectionHeader">Ingredients</h2>
             
                 <!--Ingredients list (in a table cell)-->
                 <ul class="tableView">
-                    <li class="tableViewCell">Ingredient 1<br />
-                                              Ingredient 2</li>
+                    <li class="tableViewCell"><textarea class="textArea">Ingredient 1&#013;Ingredient 2</textarea></li>
                 </ul>
                 
             <!--Directions section header-->
@@ -89,7 +107,7 @@
             
                 <!--Directions list (in a table cell)-->
                 <ul class="tableView">
-                    <li class="tableViewCell">First step is ... Then ... Finally ...</li>
+                    <li class="tableViewCell"><textarea class="textArea">First... Then... Finally...</textarea></li>
                 </ul>
             
         </div> <!--End Body-->

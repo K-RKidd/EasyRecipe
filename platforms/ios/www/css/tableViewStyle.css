@@ -107,6 +107,9 @@
     
     font-size: 12pt;
     font-family: sans-serif;
+    
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .deleteButton {

@@ -37,7 +37,7 @@
                 
                 <!--Left Element of Header-->
                 <div class="tableCell">
-                    <a class="navigationLink" href="tableView.html">Back</a>
+                    <a class="navigationLink" href="recipedetailview.html">Cancel</a>
                 </div>
                 
                 <!--Middle Element of Header-->
@@ -47,7 +47,7 @@
                 
                 <!--Right Element of Header-->
                 <div class="tableCell">
-                    <a class="navigationLink" href="#">Edit</a>
+                    <a class="navigationLink" href="#">Done</a>
                 </div>
                 
             </div>
@@ -55,10 +55,14 @@
         
         <!--Body: Contains content of page-->
         <div id="body">
+
+            <!—- button to take picture -->
+            <button onclick="takePicture();">Add Photo</button> <br>
+
             
             <!--Image of finished recipe-->
-            <img src="https://openclipart.org/image/300px/svg_to_png/151201/taco.png" class="recipePicture" />
-            
+            <img style="width:200px;height:100px;" id="camera_image" src="" />
+                        
             <!--Recipe Name section header-->
             <h2 class="tableViewSectionHeader">Recipe Name</h2>
             
@@ -67,15 +71,20 @@
                     <li class="tableViewCell"><input type="text" value="Chocolate Chip Cookies" class="textField" /></li>
                 </ul>
                 
-            <!--Recipe Tags section header-->
-            <h2 class="tableViewSectionHeader">Recipe Tags</h2>
+            <!--Ingredients section header-->
+            <h2 class="tableViewSectionHeader">Ingredients</h2>
             
-                <!--Recipe tag table cells-->
+                <!--Ingredients list (in a table cell)-->
                 <ul class="tableView">
-                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag1" class="textField" /></li>
-                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag2" class="textField" /></li>
-                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag3" class="textField" /></li>
-                    <li class="tableViewCell" id="addTag">Add tag</li>
+                    <li class="tableViewCell"><textarea class="textArea">Ingredient 1&#013;Ingredient 2</textarea></li>
+                </ul>
+                
+            <!--Directions section header-->
+            <h2 class="tableViewSectionHeader">Directions</h2>
+            
+                <!--Directions list (in a table cell)-->
+                <ul class="tableView">
+                    <li class="tableViewCell"><textarea class="textArea">First... Then... Finally...</textarea></li>
                 </ul>
             
             <!--Cook Time section header-->
@@ -93,21 +102,19 @@
                 <ul class="tableView">
                     <li class="tableViewCell"><input type="text" value="probably not enough" class="textField" /></li>
                 </ul>
-            
-            <!--Ingredients section header-->
-            <h2 class="tableViewSectionHeader">Ingredients</h2>
-            
-                <!--Ingredients list (in a table cell)-->
-                <ul class="tableView">
-                    <li class="tableViewCell"><textarea class="textArea">Ingredient 1&#013;Ingredient 2</textarea></li>
-                </ul>
                 
-            <!--Directions section header-->
-            <h2 class="tableViewSectionHeader">Directions</h2>
+            <!--Recipe Tags section header-->
+            <h2 class="tableViewSectionHeader">Recipe Tags</h2>
             
-                <!--Directions list (in a table cell)-->
-                <ul class="tableView">
-                    <li class="tableViewCell"><textarea class="textArea">First... Then... Finally...</textarea></li>
+                <!--Recipe tag table cells-->
+                <ul class="tableView" id="tagTableView">
+                    <!--The delete buttons have to be before the tag textfield so that it is centered vertically when it is floated right-->
+                    <!--TODO: delete button should delete the tag from this list-->
+                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag1" class="textField" /></li>
+                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag2" class="textField" /></li>
+                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag3" class="textField" /></li>
+                    <!--TODO: addTag should add another tag list item when tapped-->
+                    <li class="tableViewCell" id="addTag">Add tag</li>
                 </ul>
             
         </div> <!--End Body-->
@@ -119,13 +126,26 @@
         
         <!--PhoneGap JavaScript: must be at the bottom of the page-->
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="Camera.js"></script>
         
         <!---->
         <script type="text/javascript">
+   
             
             //Run the script when the window loads to prevent manipulating
             //HTML elements before they load.
             window.onload = function() {
+                
+                var addTagButton = document.getElementById("addTag");
+                
+                addTagButton.onclick = function() {
+                    var tagTableViewElement = document.getElementById("tagTableView");
+                    var newTag = document.createElement("li");
+                    newTag.innerHTML = '<div class="deleteButton"> X </div><input type="text" value="New Tag" class="textField" />';
+                    newTag.className = "tableViewCell";
+                    tagTableViewElement.insertBefore(newTag, addTagButton);
+                    
+                };
                 
                 //Get the help button
                 var helpButton = document.getElementById("help");
@@ -137,7 +157,49 @@
                 }
                 
             }//end window.onload function
+  
+            var pictureSource;
+    var destinationType;
+    var deviceReady = false;
+    document.addEventListener("deviceready", onDeviceReady, false);     
+ 
+    function onDeviceReady() {
+        alert("Device ready!");
+        deviceReady = true;
+        pictureSource = Camera.PictureSourceType.CAMERA;
+        destinationType = Camera.DestinationType.FILE_URI;
+        alert("pictureSource = " + pictureSource + "destinationType = " + destinationType);
+        
+    }
+ 
+    function takePicture() {
+        alert("Taking a picture");
+        if (!deviceReady) {
+            alert("Error: PhoneGap did not initialize.");
+        }
+        navigator.camera.getPicture(
+            //Camera.Picture.SourceType.PHOTOLIBRARY, 
+            function(uri) {
+                var img = document.getElementById('camera_image');
+                img.style.visibility = "visible";
+                img.style.display = "block";
+                img.src = uri;
+                document.getElementById('camera_status').innerHTML = "Success";
+            },
+            function(e) {
+                console.log("Error getting picture: " + e);
+                document.getElementById('camera_status').innerHTML = "Error getting picture.";
+            }, {
+                quality : 50,
+                destinationType : Camera.DestinationType.FILE_URI,
+                pictureSource: Camera.PictureSourceType.SAVEDPHOTOALBUM
+                //destinationType : destinationType.DATA_URI
+
+            });
+    };
+
             
+ 
         </script>
         
     </body>

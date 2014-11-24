@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Recipe Model Test</title>
+    </head>
+    <body>
+        
+        <script type="text/javascript" src="js/Model/RecipeText.js"></script>
+        <script type="text/javascript" src="js/Store/RecipeStore.js"></script>
+        <script type="text/javascript">
+            
+            document.write("hello <br />");
+            
+            var recipe = new RecipeText();
+            if (recipe == null) {
+                document.write("recipe is null <br />");
+            } else {
+                document.write("recipe is not null <br />");
+            }
+            
+            document.write("recipe type: " + recipe.getType() + "<br />");
+            
+            recipe.setName("my recipe");
+            recipe.setCookTime("1 minute");
+            recipe.setYield("1 person");
+            recipe.setIngredients("milk, cereal");
+            recipe.setDirections("pour milk on cereal. eat.");
+            
+            document.write("recipe name: " + recipe.getName() + "<br />");
+            document.write("recipe cook time: " + recipe.getCookTime() + "<br />");
+            document.write("recipe yield: " + recipe.getYield() + "<br />");
+            document.write("recipe ingredients: " + recipe.getIngredients() + "<br />");
+            document.write("recipe directions: " + recipe.getDirections() + "<br />");
+            
+            document.write("recipe as json: " + JSON.stringify(recipe) + "<br />");
+            
+            var recipe2 = JSON.parse(JSON.stringify(recipe));
+            document.write("recipe2: " + JSON.stringify(recipe2)) + "<br />";
+            
+            recipeStore = new RecipeStore();
+            
+            if (recipeStore.recipes != null) {
+                alert("recipes aren't null");
+            } else {
+                alert("recipes are null");
+            }
+            
+        </script>
+    </body>
+</html>

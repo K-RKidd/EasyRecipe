@@ -37,7 +37,7 @@
                 
                 <!--Left Element of Header-->
                 <div class="tableCell">
-                    <a class="navigationLink" href="recipedetailview.html">Back</a>
+                    <a class="navigationLink" href="recipedetailview.html">Cancel</a>
                 </div>
                 
                 <!--Middle Element of Header-->
@@ -47,7 +47,7 @@
                 
                 <!--Right Element of Header-->
                 <div class="tableCell">
-                    <a class="navigationLink" href="#">Edit</a>
+                    <a class="navigationLink" href="#">Done</a>
                 </div>
                 
             </div>
@@ -55,10 +55,14 @@
         
         <!--Body: Contains content of page-->
         <div id="body">
+
+            <!—- button to take picture -->
+            <button onclick="takePicture();">Add Photo</button> <br>
+
             
             <!--Image of finished recipe-->
-            <img src="https://openclipart.org/image/300px/svg_to_png/151201/taco.png" class="recipePicture" />
-            
+            <img style="width:200px;height:100px;" id="camera_image" src="" />
+                        
             <!--Recipe Name section header-->
             <h2 class="tableViewSectionHeader">Recipe Name</h2>
             
@@ -122,9 +126,11 @@
         
         <!--PhoneGap JavaScript: must be at the bottom of the page-->
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="Camera.js"></script>
         
         <!---->
         <script type="text/javascript">
+   
             
             //Run the script when the window loads to prevent manipulating
             //HTML elements before they load.
@@ -151,7 +157,49 @@
                 }
                 
             }//end window.onload function
+  
+            var pictureSource;
+    var destinationType;
+    var deviceReady = false;
+    document.addEventListener("deviceready", onDeviceReady, false);     
+ 
+    function onDeviceReady() {
+        alert("Device ready!");
+        deviceReady = true;
+        pictureSource = Camera.PictureSourceType.CAMERA;
+        destinationType = Camera.DestinationType.FILE_URI;
+        alert("pictureSource = " + pictureSource + "destinationType = " + destinationType);
+        
+    }
+ 
+    function takePicture() {
+        alert("Taking a picture");
+        if (!deviceReady) {
+            alert("Error: PhoneGap did not initialize.");
+        }
+        navigator.camera.getPicture(
+            //Camera.Picture.SourceType.PHOTOLIBRARY, 
+            function(uri) {
+                var img = document.getElementById('camera_image');
+                img.style.visibility = "visible";
+                img.style.display = "block";
+                img.src = uri;
+                document.getElementById('camera_status').innerHTML = "Success";
+            },
+            function(e) {
+                console.log("Error getting picture: " + e);
+                document.getElementById('camera_status').innerHTML = "Error getting picture.";
+            }, {
+                quality : 50,
+                destinationType : Camera.DestinationType.FILE_URI,
+                pictureSource: Camera.PictureSourceType.SAVEDPHOTOALBUM
+                //destinationType : destinationType.DATA_URI
+
+            });
+    };
+
             
+ 
         </script>
         
     </body>

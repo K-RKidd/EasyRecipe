@@ -1,0 +1,38 @@
+2014-11-30 10:43:46.810 HelloWorld[1143:9085] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/macuser/Library/Developer/CoreSimulator/Devices/BBDA5D24-DB86-4041-BADB-E65FD202DFDC/data/Containers/Data/Application/F72F409D-4AEC-40F8-8B64-99B9ACC2A524/Library/Cookies/Cookies.binarycookies
+2014-11-30 10:43:47.397 HelloWorld[1143:9085] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-30 10:43:47.397 HelloWorld[1143:9085] Multi-tasking -> Device: YES, App: YES
+2014-11-30 10:43:47.451 HelloWorld[1143:9085] Unlimited access to network resources
+2014-11-30 10:43:47.579 HelloWorld[1143:9085] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-30 10:43:53.510 HelloWorld[1143:9085] Resetting plugins due to page load.
+2014-11-30 10:43:54.299 HelloWorld[1143:9085] Finished load of: file:///Users/macuser/Library/Developer/CoreSimulator/Devices/BBDA5D24-DB86-4041-BADB-E65FD202DFDC/data/Containers/Bundle/Application/8746D53F-C62E-4F07-BAA8-3FB4A2410A69/HelloWorld.app/www/index.html
+2014-11-30 10:45:18.495 HelloWorld[1143:9085] Resetting plugins due to page load.
+2014-11-30 10:45:18.547 HelloWorld[1143:9085] Finished load of: file:///Users/macuser/Library/Developer/CoreSimulator/Devices/BBDA5D24-DB86-4041-BADB-E65FD202DFDC/data/Containers/Bundle/Application/8746D53F-C62E-4F07-BAA8-3FB4A2410A69/HelloWorld.app/www/tableview.html
+2014-11-30 10:45:23.366 HelloWorld[1143:9085] Resetting plugins due to page load.
+2014-11-30 10:45:23.861 HelloWorld[1143:9085] Finished load of: file:///Users/macuser/Library/Developer/CoreSimulator/Devices/BBDA5D24-DB86-4041-BADB-E65FD202DFDC/data/Containers/Bundle/Application/8746D53F-C62E-4F07-BAA8-3FB4A2410A69/HelloWorld.app/www/recipedetailview.html
+2014-11-30 10:49:06.562 HelloWorld[1459:11293] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/macuser/Library/Developer/CoreSimulator/Devices/BBDA5D24-DB86-4041-BADB-E65FD202DFDC/data/Containers/Data/Application/2BBC824A-5986-4768-AE98-279F28A2744C/Library/Cookies/Cookies.binarycookies
+2014-11-30 10:49:07.062 HelloWorld[1459:11293] Apache Cordova native platform version 3.6.3 is starting.
+2014-11-30 10:49:07.063 HelloWorld[1459:11293] Multi-tasking -> Device: YES, App: YES
+2014-11-30 10:49:07.072 HelloWorld[1459:11293] Unlimited access to network resources
+2014-11-30 10:49:07.103 HelloWorld[1459:11293] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-11-30 10:49:08.822 HelloWorld[1459:11293] Resetting plugins due to page load.
+2014-11-30 10:49:09.102 HelloWorld[1459:11293] Finished load of: file:///Users/macuser/Library/Developer/CoreSimulator/Devices/BBDA5D24-DB86-4041-BADB-E65FD202DFDC/data/Containers/Bundle/Application/2EA76FB5-6540-47F6-8464-4EFD4F7EA8BE/HelloWorld.app/www/index.html
+2014-11-30 10:49:16.153 HelloWorld[1459:11293] Resetting plugins due to page load.
+2014-11-30 10:49:16.208 HelloWorld[1459:11293] Finished load of: file:///Users/macuser/Library/Developer/CoreSimulator/Devices/BBDA5D24-DB86-4041-BADB-E65FD202DFDC/data/Containers/Bundle/Application/2EA76FB5-6540-47F6-8464-4EFD4F7EA8BE/HelloWorld.app/www/tableview.html
+2014-11-30 10:49:19.701 HelloWorld[1459:11293] Resetting plugins due to page load.
+2014-11-30 10:49:19.793 HelloWorld[1459:11293] Finished load of: file:///Users/macuser/Library/Developer/CoreSimulator/Devices/BBDA5D24-DB86-4041-BADB-E65FD202DFDC/data/Containers/Bundle/Application/2EA76FB5-6540-47F6-8464-4EFD4F7EA8BE/HelloWorld.app/www/recipedetailview.html
+2014-11-30 10:49:33.303 HelloWorld[1459:11293] Resetting plugins due to page load.
+2014-11-30 10:49:33.514 HelloWorld[1459:11293] Finished load of: file:///Users/macuser/Library/Developer/CoreSimulator/Devices/BBDA5D24-DB86-4041-BADB-E65FD202DFDC/data/Containers/Bundle/Application/2EA76FB5-6540-47F6-8464-4EFD4F7EA8BE/HelloWorld.app/www/recipeeditview.html
+2014-11-30 10:49:39.492 HelloWorld[1459:11293] Resetting plugins due to page load.
+2014-11-30 10:49:39.536 HelloWorld[1459:11293] Finished load of: file:///Users/macuser/Library/Developer/CoreSimulator/Devices/BBDA5D24-DB86-4041-BADB-E65FD202DFDC/data/Containers/Bundle/Application/2EA76FB5-6540-47F6-8464-4EFD4F7EA8BE/HelloWorld.app/www/recipedetailview.html

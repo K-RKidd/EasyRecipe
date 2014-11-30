@@ -56,6 +56,11 @@
         <!--Body: Contains content of page-->
         <div id="body">
             
+            <!--The dsiplayOn button..
+            TODO: Enable this button to keep the display screen on when pressed -->
+            <p style="text-align: center;">
+            <button type="button" id="displayOn">Keep Display On</button></p>
+
             <!--Image of finished recipe-->
             <img src="https://openclipart.org/image/300px/svg_to_png/151201/taco.png" class="recipePicture" />
             
@@ -117,7 +122,15 @@
                 helpButton.onclick = function() {
                     alert("No help for you! Muahahaha!");
                 }
+
+                //Get the displayOn button
+                var displayOnButton = document.getElementById("displayOn");
                 
+                //When the display on button is clicked, pop up an alert,
+                //asking if they are sure they want to keep display on
+                displayOnButton.onclick = function() {
+                    alert("Are you sure you would like to keep your display on?");
+                }
             }//end window.onload function
             
         </script>

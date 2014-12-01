@@ -6,106 +6,106 @@
     look like a UITableView in iOS (look at the Phone app for an
     example of a UITableView.) This page should be renamed to index.html
     because it will be the first page that the app opens.
-    
+
     TODO: edit button should open editrecipeview
     TODO: if recipe image is large, make it smaller
 -->
 <html>
-    
+
     <head>
         <!--Character Encoding-->
         <meta charset="utf-8" />
-        
+
         <!--PhoneGap Default Meta Tag-->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        
+
         <!--Index.css-->
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        
+
         <!--Table View Style Sheet-->
         <link rel="stylesheet" type="text/css" href="css/tableViewStyle.css" />
-        
+
         <!--Title of tableview.html-->
         <title>Recipe Detail</title>
     </head>
-    
+
     <body>
-        
+
         <!--Header: stays at the top of the page-->
         <div id="header">
             <div class="row">
-                
+
                 <!--Left Element of Header-->
                 <div class="tableCell">
                     <a class="navigationLink" href="recipedetailview.html">Cancel</a>
                 </div>
-                
+
                 <!--Middle Element of Header-->
                 <div class="tableCell">
                     <span class="navigationTitle">Recipe</span>
                 </div>
-                
+
                 <!--Right Element of Header-->
                 <div class="tableCell">
                     <a class="navigationLink" href="#">Done</a>
                 </div>
-                
+
             </div>
         </div>  <!--End Header-->
-        
+
         <!--Body: Contains content of page-->
         <div id="body">
 
             <!—- button to take picture -->
             <button onclick="takePicture();">Add Photo</button> <br>
 
-            
+
             <!--Image of finished recipe-->
             <img style="width:200px;height:100px;" id="camera_image" src="" />
-                        
+
             <!--Recipe Name section header-->
             <h2 class="tableViewSectionHeader">Recipe Name</h2>
-            
+
                 <!--Recipe Name table cell-->
                 <ul class="tableView">
                     <li class="tableViewCell"><input type="text" value="Chocolate Chip Cookies" class="textField" /></li>
                 </ul>
-                
+
             <!--Ingredients section header-->
             <h2 class="tableViewSectionHeader">Ingredients</h2>
-            
+
                 <!--Ingredients list (in a table cell)-->
                 <ul class="tableView">
                     <li class="tableViewCell"><textarea class="textArea">Ingredient 1&#013;Ingredient 2</textarea></li>
                 </ul>
-                
+
             <!--Directions section header-->
             <h2 class="tableViewSectionHeader">Directions</h2>
-            
+
                 <!--Directions list (in a table cell)-->
                 <ul class="tableView">
                     <li class="tableViewCell"><textarea class="textArea">First... Then... Finally...</textarea></li>
                 </ul>
-            
+
             <!--Cook Time section header-->
             <h2 class="tableViewSectionHeader">Cook Time</h2>
-            
+
                 <!--Cook Time table cell-->
                 <ul class="tableView">
                     <li class="tableViewCell"><input type="text" value="too long" class="textField" /></li>
                 </ul>
-                
+
             <!--Yield section header-->
             <h2 class="tableViewSectionHeader">Yield</h2>
-                
+
                 <!--Yield table cell-->
                 <ul class="tableView">
                     <li class="tableViewCell"><input type="text" value="probably not enough" class="textField" /></li>
                 </ul>
-                
+
             <!--Recipe Tags section header-->
             <h2 class="tableViewSectionHeader">Recipe Tags</h2>
-            
+
                 <!--Recipe tag table cells-->
                 <ul class="tableView" id="tagTableView">
                     <!--The delete buttons have to be before the tag textfield so that it is centered vertically when it is floated right-->
@@ -116,69 +116,69 @@
                     <!--TODO: addTag should add another tag list item when tapped-->
                     <li class="tableViewCell" id="addTag">Add tag</li>
                 </ul>
-            
+
         </div> <!--End Body-->
-        
+
         <!--The help button that stays fixed in the lower
             right corner of the screen. This is given
             functionality in the JavaScript. -->
         <button type="button" id="help">?</button>
-        
+
         <!--PhoneGap JavaScript: must be at the bottom of the page-->
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="Camera.js"></script>
-        
+
         <!---->
         <script type="text/javascript">
-   
-            
+
+
             //Run the script when the window loads to prevent manipulating
             //HTML elements before they load.
             window.onload = function() {
-                
+
                 var addTagButton = document.getElementById("addTag");
-                
+
                 addTagButton.onclick = function() {
                     var tagTableViewElement = document.getElementById("tagTableView");
                     var newTag = document.createElement("li");
                     newTag.innerHTML = '<div class="deleteButton"> X </div><input type="text" value="New Tag" class="textField" />';
                     newTag.className = "tableViewCell";
                     tagTableViewElement.insertBefore(newTag, addTagButton);
-                    
+
                 };
-                
+
                 //Get the help button
                 var helpButton = document.getElementById("help");
-                
+
                 //When the help button is clicked, pop up an amusing alert.
                 //Later on, this will pop up an alert containing actual help.
                 helpButton.onclick = function() {
-                    alert("No help for you! Muahahaha!");
+                    self.location="helppage.html");
                 }
-                
+
             }//end window.onload function
-  
+
             var pictureSource;
     var destinationType;
     var deviceReady = false;
-    document.addEventListener("deviceready", onDeviceReady, false);     
- 
+    document.addEventListener("deviceready", onDeviceReady, false);
+
     function onDeviceReady() {
         alert("Device ready!");
         deviceReady = true;
         pictureSource = Camera.PictureSourceType.CAMERA;
         destinationType = Camera.DestinationType.FILE_URI;
         alert("pictureSource = " + pictureSource + "destinationType = " + destinationType);
-        
+
     }
- 
+
     function takePicture() {
         alert("Taking a picture");
         if (!deviceReady) {
             alert("Error: PhoneGap did not initialize.");
         }
         navigator.camera.getPicture(
-            //Camera.Picture.SourceType.PHOTOLIBRARY, 
+            //Camera.Picture.SourceType.PHOTOLIBRARY,
             function(uri) {
                 var img = document.getElementById('camera_image');
                 img.style.visibility = "visible";
@@ -198,9 +198,9 @@
             });
     };
 
-            
- 
+
+
         </script>
-        
+
     </body>
 </html>

@@ -4,131 +4,131 @@
     in EasyRecipe. There is a list of recipes that can be clicked
     to delete the cell. The list is styled by tableViewStyle.css to
     look like a UITableView in iOS (look at the Phone app for an
-    example of a UITableView.) 
-    
-    
+    example of a UITableView.)
+
+
 -->
 <html>
-    
+
     <head>
         <!--Character Encoding-->
         <meta charset="utf-8" />
-        
+
         <!--PhoneGap Default Meta Tag-->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        
+
         <!--Index.css-->
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        
+
         <!--Table View Style Sheet-->
         <link rel="stylesheet" type="text/css" href="css/tableViewStyle.css" />
-        
+
         <!--Title of tableview.html-->
         <title>Recipes</title>
     </head>
-    
+
     <body>
-        
+
         <!--Header: stays at the top of the page-->
         <div id="header">
             <div class="row">
-                
+
                 <!--Left Element of Header-->
                 <div class="tableCell">
                     <a class="navigationLink" href="tableview.html">Cancel</a>
                 </div>
-                
+
                 <!--Middle Element of Header-->
                 <div class="tableCell">
                     <span class="navigationTitle">Recipes</span>
                 </div>
-                
+
                 <!--Right Element of Header-->
                 <div class="tableCell">
 
                      <!--TODO: Update so done button saves changes before going back-->
                     <a class="navigationLink" href="tableview.html">Done</a>
                 </div>
-                
+
             </div>
         </div>  <!--End Header-->
-        
+
         <!--Body: Contains content of page-->
         <div id="body">
-            
+
             <!--Search Bar: This is just an input element-->
             <input type="text" name="searchBar" id="searchBar" />
-            
+
             <!--Table View: A table view is just an unordered list
                 with list items with class of tableViewCell. The
                 list items can be clicked to do various things
                 (see JavaScript)-->
             <ul class="tableView" id= "table">
-            
+
                 <!--"Home" list item goes to index.html-->
-                <li class="tableViewCell" id="delete" >Home <div id="myDiv" style= 			"color:red;float: right;"> X 
+                <li class="tableViewCell" id="delete" >Home <div id="myDiv" style= 			"color:red;float: right;"> X
                          </div></li>
                 <li class="tableViewCell" id="delete" >Chocolate Chip Cookies<div style =     	  		"color:red;float: right;"> X</div></li>
                 <li class="tableViewCell" id="delete" >Mac & Cheese<div style = 			"color:red;float:right;"> X</div></li>
 
             </ul>
-            
+
         </div> <!--End Body-->
-        
+
         <!--The help button that stays fixed in the lower
             right corner of the screen. This is given
             functionality in the JavaScript. -->
         <button type="button" id="help">?</button>
-        
+
         <!--PhoneGap JavaScript: must be at the bottom of the page-->
         <script type="text/javascript" src="cordova.js"></script>
-        
+
         <!--Script that pops an alert when a list item is clicked.
             If the "Home" list item is clicked, the JavaScript points
             the browser to index.html.-->
         <script type="text/javascript">
-            
+
             //Run the script when the window loads to prevent manipulating
             //HTML elements before they load.
             window.onload = function() {
-                
+
                 //Get all elements with class name tableViewCell (so get all list
                 //items in ul.tableView). tableViewCells is an array of elements.
                 var tableViewCells = document.getElementsByClassName("tableViewCell");
-                
+
                 //Iterate through the list items and add a function to each
                 //cell that executes when that list item is clicked.
                 for (var i = 0; i < tableViewCells.length; i++) {
-                    
+
                         tableViewCells[i].onclick = function() {
-                            
+
                             //Asks if want to delete item
                             alert(" Would you like to delete? ");
-                            
+
                             //Get item by these ids and delete the item clicked on
 			    this.parentNode.removeChild(this);
                         };
                 } //end for loop
 
-                
 
-                
+
+
                 //// TODO: This help button logic should be put in its own js file
                 ////       so that we can reuse it across pages.
-                
+
                 //Get the help button
                 var helpButton = document.getElementById("help");
-                
+
                 //When the help button is clicked, pop up an amusing alert.
                 //Later on, this will pop up an alert containing actual help.
                 helpButton.onclick = function() {
-                    alert("No help for you! Muahahaha!");
+                    self.location="helppage.html";
                 }
-                
+
             }//end window.onload function
-       
+
         </script>
-        
+
     </body>
 </html>
 

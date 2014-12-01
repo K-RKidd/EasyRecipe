@@ -6,59 +6,59 @@
     look like a UITableView in iOS (look at the Phone app for an
     example of a UITableView.) This page should be renamed to index.html
     because it will be the first page that the app opens.
-    
+
     TODO: rename this file to index.html
     TODO: put help button logic in external js file
 -->
 <html>
-    
+
     <head>
         <!--Character Encoding-->
         <meta charset="utf-8" />
-        
+
         <!--PhoneGap Default Meta Tag-->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        
+
         <!--Index.css-->
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        
+
         <!--Table View Style Sheet-->
         <link rel="stylesheet" type="text/css" href="css/tableViewStyle.css" />
-        
+
         <!--Title of tableview.html-->
         <title>Recipes</title>
     </head>
-    
+
     <body>
-        
+
         <!--Header: stays at the top of the page-->
         <div id="header">
             <div class="row">
-                
+
                 <!--Left Element of Header-->
                 <div class="tableCell">
                     <a class="navigationLink" href="tableviewEdit.html">Edit</a>
                 </div>
-                
+
                 <!--Middle Element of Header-->
                 <div class="tableCell">
                     <span class="navigationTitle">Recipes</span>
                 </div>
-                
+
                 <!--Right Element of Header-->
                 <div class="tableCell">
                     <a class="navigationLink" href="recipeeditview.html">Add</a>
                 </div>
-                
+
             </div>
         </div>  <!--End Header-->
-        
+
         <!--Body: Contains content of page-->
         <div id="body">
-            
+
             <!--Search Bar: This is just an input element-->
             <input type="text" name="searchBar" id="searchBar" />
-            
+
             <!--Table View: A table view is just an unordered list
                 with list items with class of tableViewCell. The
                 list items can be clicked to do various things
@@ -84,34 +84,34 @@
                 <li class="tableViewCell">Cell 8</li>
                 <li class="tableViewCell">Cell 9</li>
             </ul>
-            
+
         </div> <!--End Body-->
-        
+
         <!--The help button that stays fixed in the lower
             right corner of the screen. This is given
             functionality in the JavaScript. -->
         <button type="button" id="help">?</button>
-        
+
         <!--PhoneGap JavaScript: must be at the bottom of the page-->
         <script type="text/javascript" src="cordova.js"></script>
-        
+
         <!--Script that pops an alert when a list item is clicked.
             If the "Home" list item is clicked, the JavaScript points
             the browser to index.html.-->
         <script type="text/javascript">
-            
+
             //Run the script when the window loads to prevent manipulating
             //HTML elements before they load.
             window.onload = function() {
-                
+
                 //Get all elements with class name tableViewCell (so get all list
                 //items in ul.tableView). tableViewCells is an array of elements.
                 var tableViewCells = document.getElementsByClassName("tableViewCell");
-                
+
                 //Iterate through the list items and add a function to each
                 //cell that executes when that list item is clicked.
                 for (var i = 0; i < tableViewCells.length; i++) {
-                    
+
                     //If this is the first list item, it is the "Home"
                     //list item, so clicking it will point the browser to index.html.
                     if (i == 0) {
@@ -119,34 +119,34 @@
                             window.location = "index.html";
                         };
                     }
-                    
+
                     //Otherwise, just pop up an alert displaying the contents of the
                     //list item when the list item is clicked.
                     else {
                         tableViewCells[i].onclick = function() {
-                            
+
                             //this.innerHTML gets the html inside the list item.
                             alert("You clicked on list item: " + this.innerHTML);
                             window.location = "recipedetailview.html";
                         };
                     }
                 } //end for loop
-                
+
                 //// TODO: This help button logic should be put in its own js file
                 ////       so that we can reuse it across pages.
-                
+
                 //Get the help button
                 var helpButton = document.getElementById("help");
-                
+
                 //When the help button is clicked, pop up an amusing alert.
                 //Later on, this will pop up an alert containing actual help.
                 helpButton.onclick = function() {
-                    alert("No help for you! Muahahaha!");
+                    self.location="helppage.html";
                 }
-                
+
             }//end window.onload function
-            
+
         </script>
-        
+
     </body>
 </html>

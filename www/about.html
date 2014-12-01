@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <!-- Character Encoding -->
+            <meta charset="utf-8" />
+
+            <!-- Phonegap Default Meta Tag -->
+            <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+            <!-- CSS Link -->
+            <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+            <!-- Title of Help_Page -->
+            <title>About</title>
+        </head>
+
+        <body>
+            <!--Header: stays at the top of the page-->
+    		<div id="header">
+    	        <div class="row">
+
+    	            <!--Back Link-->
+    	            <div class="tableCell">
+    	                <a class="navigationLink" onclick="goBack()">Back</a>
+    	            </div>
+
+    	            <!--Displayed Page Subject-->
+    	            <div class="tableCell">
+    	                <span class="navigationTitle">About</span>
+    	            </div>
+
+    	            <!--About Link-->
+    	            <div class="tableCell">
+    	                <a class="navigationLink" href="index.html">Home</a>
+    	            </div>
+
+    	        </div>
+            </div>  <!--End Header-->
+
+        <div id="body">
+
+            <p>eCook was created by Muhammad-Sharif Moustafa, Krystle Roth-Kidd, and Benjamin Kronisch.  All rights reserved.</p>
+
+        <!-- Javascript -->
+	        <!--goBack()- Sends the user to the previously accessed page.-->
+	        <script> function goBack() {
+	            window.history.back()
+	        }
+        </script>
+    </body>
+</html>

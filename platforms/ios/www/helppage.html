@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- This is the eCook Help Page.  On it will be an explanation of how to use the eCook app. -->
+<html>
+    <head>
+        <!-- Character Encoding -->
+        <meta charset="utf-8" />
+
+        <!-- Phonegap Default Meta Tag -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+        <!-- CSS Link -->
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <!-- Title of Help_Page -->
+        <title>Help</title>
+    </head>
+
+    <body>
+        <!--Header: stays at the top of the page-->
+		<div id="header">
+	        <div class="row">
+
+	            <!--Back Link-->
+	            <div class="tableCell">
+	                <a class="navigationLink" onclick="goBack()">Back</a>
+	            </div>
+
+	            <!--Displayed Page Subject-->
+	            <div class="tableCell">
+	                <span class="navigationTitle">Help</span>
+	            </div>
+
+	            <!--About Link-->
+	            <div class="tableCell">
+	                <a class="navigationLink" href="aboutPage">About</a>
+	            </div>
+
+	        </div>
+        </div>  <!--End Header-->
+
+        <div id="body">
+            <p>This is the eCook help page.  Here you will find instructions on how to use the app and its various functions.</p>
+            <p>Recipe List Page: This page displays a list of saved recipes.  On the top right of the page is a button labeled "Add".
+            Tapping this will open up a menu that asks you to select a format for a new recipe.  Possible choices are "Input Text", "Take a Photo", and "Import from Website".
+            If you decide not to add a recipe after all, tap "Cancel".</p>
+
+        </div>
+
+
+        <!-- Javascript -->
+
+        <script> function goBack() {
+            window.history.back()
+        }
+        </script>
+
+    </body>
+</html>

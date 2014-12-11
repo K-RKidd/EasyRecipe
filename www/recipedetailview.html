@@ -25,6 +25,13 @@
         <!--Table View Style Sheet-->
         <link rel="stylesheet" type="text/css" href="css/tableViewStyle.css" />
         
+        <style>
+            .recipePicture {
+                width:100%;
+                height: auto;
+            }
+        </style>
+        
         <!--Title of tableview.html-->
         <title>Recipe Detail</title>
     </head>
@@ -37,7 +44,7 @@
                 
                 <!--Left Element of Header-->
                 <div class="tableCell">
-                    <a class="navigationLink" href="tableView.html">Back</a>
+                    <a class="navigationLink" href="tableview.html">Back</a>
                 </div>
                 
                 <!--Middle Element of Header-->
@@ -56,23 +63,26 @@
         <!--Body: Contains content of page-->
         <div id="body">
             
+            <button>Keep Screen On</button>
+            
             <!--Image of finished recipe-->
-            <img src="https://openclipart.org/image/300px/svg_to_png/151201/taco.png" class="recipePicture" />
+            <!--<img src="https://openclipart.org/image/300px/svg_to_png/151201/taco.png" class="recipePicture" />-->
+            <img class="recipePicture" />
             
             <!--Recipe Name table cell-->
             <ul class="tableView">
-                <li class="tableViewCell">**Recipe Name**</li>
+                <li id="recipeName" class="tableViewCell">**Recipe Name**</li>
             </ul>
             
             <!--Recipe Tags table cell-->
             <ul class="tableView">
-                <li class="tableViewCell">tag1, tag2, tag3</li>
+                <li id="recipeTags" class="tableViewCell">tag1, tag2, tag3</li>
             </ul>
             
             <!--Cook Time and Yield table cells-->
             <ul class="tableView">
-                <li class="tableViewCell">**Cook Time**</li>
-                <li class="tableViewCell">**Yield**</li>
+                <li id="recipeCookTime" class="tableViewCell">**Cook Time**</li>
+                <li id="recipeYield" class="tableViewCell">**Yield**</li>
             </ul>
             
             <!--Ingredients section header-->
@@ -80,7 +90,7 @@
             
                 <!--Ingredients list (in a table cell)-->
                 <ul class="tableView">
-                    <li class="tableViewCell">Ingredient 1<br />
+                    <li id="recipeIngredients" class="tableViewCell">Ingredient 1<br />
                                               Ingredient 2</li>
                 </ul>
                 
@@ -89,7 +99,7 @@
             
                 <!--Directions list (in a table cell)-->
                 <ul class="tableView">
-                    <li class="tableViewCell">First step is ... Then ... Finally ...</li>
+                    <li id="recipeDirections" class="tableViewCell">First step is ... Then ... Finally ...</li>
                 </ul>
             
         </div> <!--End Body-->
@@ -102,12 +112,57 @@
         <!--PhoneGap JavaScript: must be at the bottom of the page-->
         <script type="text/javascript" src="cordova.js"></script>
         
+        <script type="text/javascript" src="plugins/org.apache.cordova.file/www/File.js"></script>
+        <script type="text/javascript" src="plugins/org.apache.cordova.file/www/FileSystem.js"></script>
+        <script type="text/javascript" src="plugins/org.apache.cordova.file/www/LocalFileSystem.js"></script>
+        
+        <script type="text/javascript" src="js/Store/RecipeStore.js"></script>
+        <script type="text/javascript" src="js/Model/RecipeText.js"></script>
+        
         <!---->
         <script type="text/javascript">
             
             //Run the script when the window loads to prevent manipulating
             //HTML elements before they load.
-            window.onload = function() {
+            document.addEventListener("deviceready", function() {
+                
+                console.log("device ready");
+                
+                var store = new RecipeStore();
+                
+                store.setFinishedInitialization(function() {
+                    var recipeIndex = parseInt(localStorage.getItem("index of recipe"));
+                    console.log("Getting recipe at index " + recipeIndex);
+                    var recipe = store.getRecipes()[recipeIndex];
+                    console.log("Got recipe: " + recipe.getName());
+                    
+                    var recipeName = document.getElementById("recipeName");
+                    recipeName.innerHTML = recipe.getName();
+                    
+                    var recipeTags = document.getElementById("recipeTags");
+                    if (typeof(recipe.getTags()) == 'undefined') {
+                        recipeTags.innerHTML = "No tags";
+                    } else {
+                        recipeTags.innerHTML = recipe.getTags();
+                    }
+                    
+                    var recipeCookTime = document.getElementById("recipeCookTime");
+                    recipeCookTime.innerHTML = recipe.getCookTime();
+                    
+                    var recipeIngredients = document.getElementById("recipeIngredients");
+                    recipeIngredients.innerHTML = recipe.getIngredients();
+                    
+                    var recipeYield = document.getElementById("recipeYield");
+                    recipeYield.innerHTML = recipe.getYield();
+                    
+                    var recipeDirections = document.getElementById("recipeDirections");
+                    recipeDirections.innerHTML = recipe.getDirections();
+                    
+                    var recipeImage = document.getElementsByClassName("recipePicture")[0];
+                    recipeImage.src = recipe.getImage();
+                });
+                
+                store.initializeRecipes();
                 
                 //Get the help button
                 var helpButton = document.getElementById("help");
@@ -115,10 +170,11 @@
                 //When the help button is clicked, pop up an amusing alert.
                 //Later on, this will pop up an alert containing actual help.
                 helpButton.onclick = function() {
-                    alert("No help for you! Muahahaha!");
+                    //alert("No help for you! Muahahaha!");
+                    window.location = "helppage.html";
                 }
                 
-            }//end window.onload function
+            }, false); //end window.onload function
             
         </script>
         

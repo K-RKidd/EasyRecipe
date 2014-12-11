@@ -25,6 +25,13 @@
         <!--Table View Style Sheet-->
         <link rel="stylesheet" type="text/css" href="css/tableViewStyle.css" />
         
+        <style>
+            #camera_image {
+                width:100%;
+                height: auto;
+            }
+        </style>
+        
         <!--Title of tableview.html-->
         <title>Recipe Detail</title>
     </head>
@@ -61,14 +68,14 @@
 
             
             <!--Image of finished recipe-->
-            <img style="width:200px;height:100px;" id="camera_image" src="" />
+            <img id="camera_image" src="" />
                         
             <!--Recipe Name section header-->
             <h2 class="tableViewSectionHeader">Recipe Name</h2>
             
                 <!--Recipe Name table cell-->
                 <ul class="tableView">
-                    <li class="tableViewCell"><input type="text" value="Chocolate Chip Cookies" class="textField" /></li>
+                    <li class="tableViewCell"><input type="text" value="Pizza" class="textField" /></li>
                 </ul>
                 
             <!--Ingredients section header-->
@@ -76,7 +83,13 @@
             
                 <!--Ingredients list (in a table cell)-->
                 <ul class="tableView">
-                    <li class="tableViewCell"><textarea class="textArea">Ingredient 1&#013;Ingredient 2</textarea></li>
+                    <li class="tableViewCell"><textarea class="textArea">1 teaspoon active dry yeast<br />
+                    1/4 cup warm water<br />
+                    1 cup cold water<br />
+                    1 teaspoon salt<br />
+                    3 cups bread flour<br />
+                    6 ounces low moisture mozzarella chees, thinly sliced<br />
+                    </textarea></li>
                 </ul>
                 
             <!--Directions section header-->
@@ -84,7 +97,10 @@
             
                 <!--Directions list (in a table cell)-->
                 <ul class="tableView">
-                    <li class="tableViewCell"><textarea class="textArea">First... Then... Finally...</textarea></li>
+                    <li class="tableViewCell"><textarea class="textArea">
+                        1. Sprinkle yeast over warm water in a large bowl. Let stand for 5 minutes to proof. Stir in salt and cold water, then stir in the flour about 1 cup at a time. When the dough is together enough to remove from the bowl, knead on a floured surface until smooth, about 10 minutes. Divide into two pieces, and form each one into a tight ball. Coat the dough balls with olive oil, and refrigerate in a sealed container for at least 16 hours. Be sure to use a big enough container to allow the dough to rise. Remove the dough from the refrigerator one hour prior to using.<br /><br />
+                        2. Preheat the oven, with a pizza stone on the lowest rack, to 550 degrees F. Lightly dust a pizza peel with flour.<br /><br />
+                    </textarea></li>
                 </ul>
             
             <!--Cook Time section header-->
@@ -92,7 +108,7 @@
             
                 <!--Cook Time table cell-->
                 <ul class="tableView">
-                    <li class="tableViewCell"><input type="text" value="too long" class="textField" /></li>
+                    <li class="tableViewCell"><input type="text" value="16 hours 31 minutes" class="textField" /></li>
                 </ul>
                 
             <!--Yield section header-->
@@ -100,7 +116,7 @@
                 
                 <!--Yield table cell-->
                 <ul class="tableView">
-                    <li class="tableViewCell"><input type="text" value="probably not enough" class="textField" /></li>
+                    <li class="tableViewCell"><input type="text" value="2 pizzas" class="textField" /></li>
                 </ul>
                 
             <!--Recipe Tags section header-->
@@ -110,9 +126,7 @@
                 <ul class="tableView" id="tagTableView">
                     <!--The delete buttons have to be before the tag textfield so that it is centered vertically when it is floated right-->
                     <!--TODO: delete button should delete the tag from this list-->
-                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag1" class="textField" /></li>
-                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag2" class="textField" /></li>
-                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="tag3" class="textField" /></li>
+                    <li class="tableViewCell"><div class="deleteButton"> X </div><input type="text" value="lunch" class="textField" /></li>
                     <!--TODO: addTag should add another tag list item when tapped-->
                     <li class="tableViewCell" id="addTag">Add tag</li>
                 </ul>
@@ -153,7 +167,8 @@
                 //When the help button is clicked, pop up an amusing alert.
                 //Later on, this will pop up an alert containing actual help.
                 helpButton.onclick = function() {
-                    alert("No help for you! Muahahaha!");
+                    //alert("No help for you! Muahahaha!");
+                    window.location = "helppage.html";
                 }
                 
             }//end window.onload function
@@ -164,16 +179,18 @@
     document.addEventListener("deviceready", onDeviceReady, false);     
  
     function onDeviceReady() {
-        alert("Device ready!");
+        //alert("Device ready!");
+        console.log("Device ready!");
         deviceReady = true;
         pictureSource = Camera.PictureSourceType.CAMERA;
         destinationType = Camera.DestinationType.FILE_URI;
-        alert("pictureSource = " + pictureSource + "destinationType = " + destinationType);
-        
+        //alert("pictureSource = " + pictureSource + "destinationType = " + destinationType);
+        console.log("pictureSource = " + pictureSource + "destinationType = " + destinationType);
     }
  
     function takePicture() {
-        alert("Taking a picture");
+        //alert("Taking a picture");
+        console.log("Taking a picture");
         if (!deviceReady) {
             alert("Error: PhoneGap did not initialize.");
         }
@@ -184,7 +201,8 @@
                 img.style.visibility = "visible";
                 img.style.display = "block";
                 img.src = uri;
-                document.getElementById('camera_status').innerHTML = "Success";
+                //document.getElementById('camera_status').innerHTML = "Success";
+                console.log("Success");
             },
             function(e) {
                 console.log("Error getting picture: " + e);

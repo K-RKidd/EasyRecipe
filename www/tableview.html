@@ -47,7 +47,7 @@
                 
                 <!--Right Element of Header-->
                 <div class="tableCell">
-                    <a class="navigationLink" href="recipeeditview.html">Add</a>
+                    <a id="add" class="navigationLink">Add</a>
                 </div>
                 
             </div>
@@ -64,25 +64,7 @@
                 list items can be clicked to do various things
                 (see JavaScript)-->
             <ul class="tableView">
-                <!--"Home" list item goes to index.html-->
-                <li class="tableViewCell">Home</li>
-                <li class="tableViewCell">Chocolate Chip Cookies</li>
-                <li class="tableViewCell">Mac & Cheese</li>
-                <li class="tableViewCell">Cell 4</li>
-                <li class="tableViewCell">Cell 5</li>
-                <li class="tableViewCell">Cell 6</li>
-                <li class="tableViewCell">Cell 7</li>
-                <li class="tableViewCell">Cell 8</li>
-                <li class="tableViewCell">Cell 9</li>
-                <li class="tableViewCell">Cell 1</li>
-                <li class="tableViewCell">Cell 2</li>
-                <li class="tableViewCell">Cell 3</li>
-                <li class="tableViewCell">Cell 4</li>
-                <li class="tableViewCell">Cell 5</li>
-                <li class="tableViewCell">Cell 6</li>
-                <li class="tableViewCell">Cell 7</li>
-                <li class="tableViewCell">Cell 8</li>
-                <li class="tableViewCell">Cell 9</li>
+                
             </ul>
             
         </div> <!--End Body-->
@@ -95,42 +77,90 @@
         <!--PhoneGap JavaScript: must be at the bottom of the page-->
         <script type="text/javascript" src="cordova.js"></script>
         
+        <script type="text/javascript" src="plugins/org.apache.cordova.file/www/File.js"></script>
+        <script type="text/javascript" src="plugins/org.apache.cordova.file/www/FileSystem.js"></script>
+        <script type="text/javascript" src="plugins/org.apache.cordova.file/www/LocalFileSystem.js"></script>
+        
+        <script type="text/javascript" src="js/Store/RecipeStore.js"></script>
+        <script type="text/javascript" src="js/Model/RecipeText.js"></script>
+        
         <!--Script that pops an alert when a list item is clicked.
             If the "Home" list item is clicked, the JavaScript points
             the browser to index.html.-->
         <script type="text/javascript">
             
+            console.log("hi");
+            
             //Run the script when the window loads to prevent manipulating
             //HTML elements before they load.
-            window.onload = function() {
+            document.addEventListener("deviceready", function() {
                 
-                //Get all elements with class name tableViewCell (so get all list
-                //items in ul.tableView). tableViewCells is an array of elements.
-                var tableViewCells = document.getElementsByClassName("tableViewCell");
+                var store = new RecipeStore();
+            
+                store.setFinishedInitialization(function() {
+                    
+                    console.log("Finished initialization of recipes");
+                    
+                    //Get all elements with class name tableViewCell (so get all list
+                    //items in ul.tableView). tableViewCells is an array of elements.
+                    //var tableViewCells = document.getElementsByClassName("tableViewCell");
+                    var tableViewCells = new Array();
+                    var tableView = document.getElementsByClassName("tableView")[0];
+                    var html = "";
+                    //Iterate through the list items and add a function to each
+                    //cell that executes when that list item is clicked.
+                    for (var i = 0; i < store.getRecipes().length; i++) {
+                        
+                        var index = i;
+                        
+                        //If this is the first list item, it is the "Home"
+                        //list item, so clicking it will point the browser to index.html.
+                        //if (i == 0) {
+                        //    tableViewCells[i].onclick = function() {
+                        //        window.location = "index.html";
+                        //    };
+                        //}
+                        
+                        //Otherwise, just pop up an alert displaying the contents of the
+                        //list item when the list item is clicked.
+                        //else {
+                        tableViewCells[i] = document.createElement("li");
+                        tableViewCells[i].className = "tableViewCell";
+                        tableViewCells[i].innerHTML = store.getRecipes()[i].getName();
+                        
+                        tableViewCells[i].onclick = (function(index) {
+                            return function() {
+                                console.log("clicked on a recipe");
+                                //this.innerHTML gets the html inside the list item.
+                                //alert("You clicked on list item: " + this.innerHTML
+                                //      + " which is at index " + parseInt(index));
+                                console.log("You clicked on list item: " + this.innerHTML
+                                      + " which is at index " + parseInt(index));
+                                localStorage.setItem("index of recipe", index);
+                                window.location = "recipedetailview.html";
+                            };
+                        })(index);
+                        
+                        tableView.appendChild(tableViewCells[i]);
+                        //html = html + tableViewCells[i].outerHTML;
+                        //}
+                    } //end for loop
+                    
+                    //tableView.innerHTML = html;
+                    
+                    var addButton = document.getElementById("add");
+                    addButton.onclick = function() {
+                        var newRecipe = new RecipeText();
+                        localStorage.setItem("index of recipe", "0");
+                        window.location = "recipeeditview.html";
+                    }
+                }); //end finishedInitialization callback
                 
-                //Iterate through the list items and add a function to each
-                //cell that executes when that list item is clicked.
-                for (var i = 0; i < tableViewCells.length; i++) {
-                    
-                    //If this is the first list item, it is the "Home"
-                    //list item, so clicking it will point the browser to index.html.
-                    if (i == 0) {
-                        tableViewCells[i].onclick = function() {
-                            window.location = "index.html";
-                        };
-                    }
-                    
-                    //Otherwise, just pop up an alert displaying the contents of the
-                    //list item when the list item is clicked.
-                    else {
-                        tableViewCells[i].onclick = function() {
-                            
-                            //this.innerHTML gets the html inside the list item.
-                            alert("You clicked on list item: " + this.innerHTML);
-                            window.location = "recipedetailview.html";
-                        };
-                    }
-                } //end for loop
+                console.log("Is finishedInitialization a function? " +
+                            (typeof(store.finishedInitialization) == "function"));
+                
+                console.log("initializing recipes");
+                store.initializeRecipes();
                 
                 //// TODO: This help button logic should be put in its own js file
                 ////       so that we can reuse it across pages.
@@ -141,10 +171,10 @@
                 //When the help button is clicked, pop up an amusing alert.
                 //Later on, this will pop up an alert containing actual help.
                 helpButton.onclick = function() {
-                    alert("No help for you! Muahahaha!");
+                    //alert("No help for you! Muahahaha!");
+                    window.location = "helppage.html";
                 }
-                
-            }//end window.onload function
+            }, false);
             
         </script>
         
